@@ -1,0 +1,4 @@
+source /etc/bash_completion
+source $HOME/.bash/completion/git_completion.sh
+source $HOME/.bash/completion/bash_completion.sh
+source $HOME/.bash/completion/gem_completion.sh

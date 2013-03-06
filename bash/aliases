@@ -1,0 +1,61 @@
+# Web Path
+export WEB_PATH='/Library/WebServer/Documents'
+
+# Disable Internet Sharing MacOS
+alias wifi-sharring='/usr/libexec/InternetSharing'
+
+# RVM
+alias rvmg='rvm gemset'
+
+# RailRoady
+alias railroady_models='railroady -a -i -o models.dot -M ; dot -Tpng models.dot > models.png; rm models.dot'
+alias railroady_controllers='railroady -C ; neato -Tpng > controllers.png ; neato -Tpng controllers.dot > controllers.png'
+
+# PHP
+alias pecl="~/pear/bin/pecl"
+alias pear="~/pear/bin/pear"
+alias phpunit="~/pear/bin/phpunit"
+alias phpdoc="~/pear/bin/phpdoc"
+
+# Git
+alias gitrm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+alias gitx="nohup /Applications/GitX.app/Contents/MacOS/GitX > /dev/null 2>&1&"
+
+# Mongo DB
+alias mongo-start='mongod run  --dbpath /usr/local/Cellar/mongodb/ --rest'
+
+# Memcache
+alias memcache-start='/usr/local/bin/memcached -m 1024 -u root -l 127.0.0.1 -p 11211 –u nobody'
+
+# SVN
+alias svnadd="svn st | grep '^?' | awk '{print $2}' | xargs svn add"
+alias rmsvn="find . -type d -name .svn | xargs rm -rf"
+
+# SoapUI
+alias soapui="sh /home/euricovidal/Downloads/soapui-4.5.1/bin/soapui.sh > /dev/null 2>&1 &"
+
+alias lc='ls -C'
+alias ls='ls -lh -G'
+alias ll='ls -a'
+alias ...='cd .. && ls -C'
+alias env='env | sort'
+#alias grep='grep -rn '
+alias findd='find . -type d | grep -i '
+alias findf='find . -type f | grep -i '
+alias chd='find . -type d -exec chmod 755 {} \;'
+alias chf='find . -type f -exec chmod 664 {} \;'
+alias kountd='for f in *; do printf "%30s %5d\n" $f `find $f d | wc -l`; done'
+alias kountf='for f in *; do printf "%30s %5d\n" $f `find $f f | wc -l`; done'
+alias path='IFS=: && for f in $PATH; do echo $f; done'
+alias ldpath='IFS=: && for f in $LD_LIBRARY_PATH; do echo $f; done'
+alias manpath='IFS=: && for f in $MANPATH; do echo $f; done'
+alias sized='du -h -d 0'
+alias sudo_sized='sudo du -h -d'
+alias hdsize='df -h'
+alias psgrep="ps aux | egrep -v egrep | egrep"
+alias top="top -o rsize"
+alias make="make -j 2"
+alias cleanup="sudo rm -rf /private/var/log/asl/*"
+
+# Vim
+alias wpvim="cd wp-content/themes/ && vim . && cd ../../"

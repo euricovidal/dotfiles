@@ -1,0 +1,191 @@
+title() {
+  echo -ne "\033]0;$@\007";
+}
+
+reload() {
+  source ~/.bash_profile;
+}
+
+git_status(){
+  if [[ "$1" != "" ]]; then
+    local CURRENT_DIR=`pwd`
+    cd $1
+  fi
+
+  local STATUS=`git status 2> /dev/null`
+  local PROMPT_STATUS=""
+  local STATE=""
+  local NOTHING_TO_COMMIT="# Initial commit"
+  local BEHIND="# Your branch is behind"
+  local AHEAD="# Your branch is ahead"
+  local UNTRACKED="# Untracked files"
+  local DIVERGED="have diverged"
+  local CHANGED="# Changed but not updated"
+  local TO_BE_COMMITED="# Changes to be committed"
+  local NOT_STAGED="# Changes not staged for commit"
+  local LOG=`git log -1 2> /dev/null`
+
+  if [ "$STATUS" != "" ]; then
+    if [[ "$STATUS" =~ "$NOTHING_TO_COMMIT" ]]; then
+      PROMPT_STATUS="!"
+      STATE=""
+    elif [[ "$STATUS" =~ "$DIVERGED" ]]; then
+      PROMPT_STATUS="!"
+      STATE="${STATE}↕"
+    elif [[ "$STATUS" =~ "$BEHIND" ]]; then
+      PROMPT_STATUS="!"
+      STATE="${STATE}↓"
+    elif [[ "$STATUS" =~ "$AHEAD" ]]; then
+      PROMPT_STATUS="!"
+      STATE="${STATE}↑"
+    elif [[ "$STATUS" =~ "$CHANGED" ]]; then
+      PROMPT_STATUS="!"
+      STATE=""
+    elif [[ "$STATUS" =~ "$TO_BE_COMMITED" ]]; then
+      PROMPT_STATUS=""
+      STATE="*"
+    elif [[ "$STATUS" =~ "$NOT_STAGED" ]]; then
+      STATE="!"
+    else
+      PROMPT_STATUS=""
+      STATE=""
+    fi
+
+    if [[ "$STATUS" =~ "$UNTRACKED" ]]; then
+      STATE="${STATE}*"
+    fi
+  fi
+
+  if [[ "$1" != "" ]]; then
+    cd $CURRENT_DIR
+  fi
+
+  echo " $STATE"
+}
+
+ruby_version () {
+  #RUBY_VERSION=`ruby -v | awk '{print $1$2}'`
+  if [ -s $HOME/.rvm/scripts/rvm ]; then
+    source $HOME/.rvm/scripts/rvm
+    RUBY_VERSION=`rvm current`
+  fi
+
+  if [[ "$RUBY_VERSION" == "" ]]; then
+    RUBY_VERSION="system"
+  fi
+
+  echo $RUBY_VERSION
+}
+
+custom_term () {
+  STATE=`git_status`
+  RUBY_VERSION=`ruby_version`
+  DIR_NAME=$(basename `pwd`)
+  DIR="\w"
+  USER="\u"
+  DATE="$(date +%d/%m/%Y)"
+  TIME="\t"
+  PC="${HOSTNAME}"
+
+  if [ "$RUBY_VERSION" != "system" ]; then
+    source $HOME/.rvm/scripts/rvm
+  fi
+
+  title "${DIR_NAME} $(parse_git_branch)${STATE}"
+
+  if [ "$RUBY_VERSION" != "system" ]; then
+    PS1="[ ${LIGHT_RED}"
+    PS1+="${RUBY_VERSION} "
+    PS1+="${NO_COLOR}]${LIGHT_RED} "
+  else
+    PS1="${LIGHT_RED}"
+  fi
+  PS1+="${DIR} "
+  if [ "$(parse_git_branch)" != "" ]; then
+    PS1+="${NO_COLOR}[ ${RED}$(parse_git_branch)${STATE}${NO_COLOR} ]"
+  fi
+  if [ "$RUBY_VERSION" != "system" ]; then
+    PS1+="${NO_COLOR}"
+    PS1+=" [ "
+    PS1+="${LIGHT_RED}"
+    PS1+="${TIME}"
+    PS1+="${NO_COLOR}"
+    PS1+=" ]"
+    PS1+="${LIGHT_RED}"
+    PS1+="\n⊗ ${NO_COLOR}"
+  else
+    PS1+="${LIGHT_RED} ⊗ ${NO_COLOR}"
+  fi
+}
+
+sudopid(){
+  sudo ps auwx | perl -anE '$,="\t"; say @F[1,10]' | grep $1
+}
+
+pid(){
+  ps auwx | perl -anE '$,="\t"; say @F[1,10]' | grep $1
+}
+
+function parse_git_branch {
+  git branch 2> /dev/null | grep "*" | awk '{print $2}'
+}
+
+# remove duplicates while preserving input order
+function dedup {
+  awk '! x[$0]++' $@
+}
+
+# removes $HISTIGNORE commands from input
+function remove_histignore {
+  if [ -n "$HISTIGNORE" ]; then
+    # replace : with |, then * with .*
+    local IGNORE_PAT=`echo "$HISTIGNORE" | sed s/\:/\|/g | sed s/\*/\.\*/g`
+      # negated grep removes matches
+      grep -vx "$IGNORE_PAT" $@
+  else
+    cat $@
+  fi
+}
+
+# clean up the history file by remove duplicates and commands matching
+# $HISTIGNORE entries
+function history_cleanup {
+  local HISTFILE_SRC=~/.bash_history
+  local HISTFILE_DST=/tmp/.$USER.bash_history.clean
+  if [ -f $HISTFILE_SRC ]; then
+    \cp $HISTFILE_SRC $HISTFILE_SRC.backup
+    dedup $HISTFILE_SRC | remove_histignore >| $HISTFILE_DST
+    \mv $HISTFILE_DST $HISTFILE_SRC
+    chmod go-r $HISTFILE_SRC
+    history -c
+    history -r
+  fi
+}
+
+function showip {
+  echo -n "NET "; curl http://ividal.net/ip.php
+  echo
+  echo -n "Ethernet "; ifconfig | grep broadcast | sed 's/.*inet \(.*\) netmask.*/\1/'
+  ifconfig eth0 | grep 'inet addr' | sed 's/.*inet addr:\([0-9.]*\).*/\1/'
+  echo -n "Wifi "; ifconfig wlan0 | grep 'inet addr' | sed 's/.*inet addr:\([0-9.]*\).*/\1/'
+}
+
+function all_colours {
+  for i in {0..255} ; do
+    printf "\x1b[38;5;${i}mcolour${i}\n"
+  done
+}
+
+function jira_way {
+  tmux new-session -s jira_way -d
+  #tmux command-prompt -t jira_way:1 'rename-window "IRB DLS"'
+  tmux new-window  -t jira_way:2 -n 'IRB DLS' 'ssh v-iba-fe01  -t "cd /abd/app/dls/current; sudo su dls -c \"irb -r init; bash --login\""'
+  tmux new-window  -t jira_way:3 -n 'LOG DLS' 'ssh v-iba-fe01  -t "cd /data_logs/dls; bash --login"'
+  tmux new-window  -t jira_way:4 -n 'LOG ESS' 'ssh v-iba-fe01  -t "cd /data_logs/ess; bash --login"'
+  tmux new-window  -t jira_way:5 -n 'IRB ESS' 'ssh v-iba-ess01 -t "cd /abd/app/ess/current; irb -r /abd/app/ess/current/init.rb; bash --login"'
+
+  tmux select-window -t jira_way:2
+  tmux -2 attach-session -t jira_way
+}
+
+PROMPT_COMMAND=custom_term

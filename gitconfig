@@ -1,0 +1,34 @@
+[user]
+  name		= Eurico Vidal
+  email		= euricovidal@gmail.com
+[color]
+  diff		= auto
+  status	= auto
+  branch	= auto
+  ui		= true
+[alias]
+  br            = branch -av
+  pl            = pull
+  plr           = pull --rebase
+  ph            = push
+  ci		= commit -am
+  co		= checkout
+  cof		= checkout --force
+  b		= branch
+  s		= stash
+  st		= status -s
+  who		= shortlog -s --
+  dfword	= diff --word-diff
+  df    	= diff
+  l		= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative
+  commits	= log -p --format='\n\n\n%C(yellow)================================================================================\n%C(yellow)%h %s %C(white)%an%Creset'
+[core]
+  editor	= vim
+  excludefile	= /Users/euricovidal/.gitignore
+  excludesfile  = /Users/euricovidal/.gitignore
+[help]
+  autocorrect	= 1
+[apply]
+  whitespace	= nowarn
+[format]
+  pretty	= %C(yellow)%h%Creset %s %C(red)%an%Creset

@@ -1,0 +1,16 @@
+.DS_Store
+database.yml
+log/*
+*.sqlite3
+db/schema.rb
+pkg
+coverage
+*.sw?
+*.orig
+.rvmrc*
+.rvmrc
+.rspec
+.settings
+.vagrant
+Vagrantfile
+tags
