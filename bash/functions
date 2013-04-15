@@ -188,4 +188,8 @@ function jira_way {
   tmux -2 attach-session -t jira_way
 }
 
+function zzzcpf {
+  zzcpf | sed 's/[^0-9]//g'
+}
+
 PROMPT_COMMAND=custom_term

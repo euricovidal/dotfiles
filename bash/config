@@ -4,12 +4,6 @@ export GIT_EDITOR="vim"
 export CC="/usr/bin/gcc"
 export VAGRANT_LOG='info'
 
-export NLS_LANG="AMERICAN_AMERICA.WE8ISO8859P9"
-export ORACLE_HOME=/usr/lib/oracle/11.2/client64
-export LD_LIBRARY_PATH=/usr/lib/oracle/11.2/client64/lib/
-export TNS_ADMIN=/home/euricovidal/Documents/projects/abril/elco/iba/ess/config/
-export RUBYOPT=-Ku
-
 #export TERM=screen-256color-bce
 
 #history
@@ -145,4 +139,10 @@ set -o ignoreeof
 if [ "$OS_NAME" == 'mac' ]; then
   bind "set completion-ignore-case on"      # ignore case on bash completion
   bind "set mark-symlinked-directories on"  # add trailing slash to symlinked directories
+elif [ "$OS_NAME" == 'linux' ]; then
+  export NLS_LANG="AMERICAN_AMERICA.WE8ISO8859P9"
+  export ORACLE_HOME=/usr/lib/oracle/11.2/client64
+  export LD_LIBRARY_PATH=/usr/lib/oracle/11.2/client64/lib/
+  export TNS_ADMIN=$HOME/Documents/projects/abril/elco/iba/ess/config/
+  export RUBYOPT=-Ku
 fi
