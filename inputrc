@@ -27,10 +27,10 @@
 
 # this lets you hit tab to auto-complete a file or
 # directory name ignoring case
-set completion-ignore-case On
+set completion-ignore-case on
+set show-all-if-ambiguous on
 
 set meta-flag on
 set input-meta on
 set output-meta on
 set convert-meta off
-

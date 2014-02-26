@@ -8,8 +8,8 @@ coverage
 *.sw?
 *.orig
 .rvmrc*
-.rvmrc
-.rspec
+#.rvmrc
+#.rspec
 .settings
 .vagrant
 Vagrantfile

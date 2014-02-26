@@ -1,6 +1,3 @@
-# Web Path
-export WEB_PATH='/Library/WebServer/Documents'
-
 # Disable Internet Sharing MacOS
 alias wifi-sharring='/usr/libexec/InternetSharing'
 
@@ -19,7 +16,7 @@ alias phpdoc="~/pear/bin/phpdoc"
 
 # Git
 alias gitrm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
-alias gitx="nohup /Applications/GitX.app/Contents/MacOS/GitX > /dev/null 2>&1&"
+alias gst='git st'
 
 # Mongo DB
 alias mongo-start='mongod run  --dbpath /usr/local/Cellar/mongodb/ --rest'
@@ -29,17 +26,19 @@ alias memcache-start='/usr/local/bin/memcached -m 1024 -u root -l 127.0.0.1 -p 1
 
 # SVN
 alias svnadd="svn st | grep '^?' | awk '{print $2}' | xargs svn add"
-alias rmsvn="find . -type d -name .svn | xargs rm -rf"
+alias svnrm="find . -type d -name .svn | xargs rm -rf"
 
 # SoapUI
 alias soapui="sh /home/euricovidal/Downloads/soapui-4.5.1/bin/soapui.sh > /dev/null 2>&1 &"
+
+# Vim
+alias wpvim='cd wp-content/themes/ && vim . && cd ../../'
 
 alias lc='ls -C'
 alias ls='ls -lh -G'
 alias ll='ls -a'
 alias ...='cd .. && ls -C'
 alias env='env | sort'
-#alias grep='grep -rn '
 alias findd='find . -type d | grep -i '
 alias findf='find . -type f | grep -i '
 alias chd='find . -type d -exec chmod 755 {} \;'
@@ -56,6 +55,3 @@ alias psgrep="ps aux | egrep -v egrep | egrep"
 alias top="top -o rsize"
 alias make="make -j 2"
 alias cleanup="sudo rm -rf /private/var/log/asl/*"
-
-# Vim
-alias wpvim="cd wp-content/themes/ && vim . && cd ../../"

@@ -7,19 +7,19 @@
   branch	= auto
   ui		= true
 [alias]
+  b		= branch
   br            = branch -av
   pl            = pull
   plr           = pull --rebase
-  ph            = push
-  ci		= commit -am
-  co		= checkout
-  cof		= checkout --force
-  b		= branch
+  ps            = push
+  cm		= commit -am
+  ch		= checkout
+  #cof		= checkout --force
   s		= stash
   st		= status -s
-  who		= shortlog -s --
-  dfword	= diff --word-diff
   df    	= diff
+  dfword	= diff --word-diff
+  who		= shortlog -s --
   l		= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative
   commits	= log -p --format='\n\n\n%C(yellow)================================================================================\n%C(yellow)%h %s %C(white)%an%Creset'
 [core]
@@ -32,3 +32,5 @@
   whitespace	= nowarn
 [format]
   pretty	= %C(yellow)%h%Creset %s %C(red)%an%Creset
+[push]
+	default = simple

@@ -63,6 +63,10 @@ git_status(){
   echo " $STATE"
 }
 
+function parse_git_branch {
+  git branch 2> /dev/null | grep "*" | awk '{print $2}'
+}
+
 ruby_version () {
   #RUBY_VERSION=`ruby -v | awk '{print $1$2}'`
   if [ -s $HOME/.rvm/scripts/rvm ]; then
@@ -82,10 +86,10 @@ custom_term () {
   RUBY_VERSION=`ruby_version`
   DIR_NAME=$(basename `pwd`)
   DIR="\w"
-  USER="\u"
-  DATE="$(date +%d/%m/%Y)"
+  #USER="\u"
+  #DATE="$(date +%d/%m/%Y)"
   TIME="\t"
-  PC="${HOSTNAME}"
+  #PC="${HOSTNAME}"
 
   if [ "$RUBY_VERSION" != "system" ]; then
     source $HOME/.rvm/scripts/rvm
@@ -124,10 +128,6 @@ sudopid(){
 
 pid(){
   ps auwx | perl -anE '$,="\t"; say @F[1,10]' | grep $1
-}
-
-function parse_git_branch {
-  git branch 2> /dev/null | grep "*" | awk '{print $2}'
 }
 
 # remove duplicates while preserving input order
@@ -189,7 +189,32 @@ function jira_way {
 }
 
 function zzzcpf {
+  if [ ! -x "zzcpf" ]; then
+    source_zz
+  fi
   zzcpf | sed 's/[^0-9]//g'
+}
+
+function git_remote_branch {
+  echo "git branch $1"
+  echo "git push -u origin $@"
+  echo "git checkout $@"
+}
+
+function hitch_now {
+  gem list hitch | grep -i "hitch" &> /dev/null
+  if [ $? -eq 0 ]; then
+    hitch() {
+      command hitch "$@"
+        if [[ -s "$HOME/.hitch_export_authors" ]] ; then source "$HOME/.hitch_export_authors" ; fi
+    }
+    alias unhitch='hitch -u'
+    hitch
+  fi
+}
+
+function source_zz {
+  source $ZZPATH # funcoeszz
 }
 
 PROMPT_COMMAND=custom_term

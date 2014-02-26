@@ -1,58 +1,19 @@
 ############################
+# General
+############################
+alias www='cd /Library/WebServer/Documents/'
+alias projects='cd $HOME/Documents/projects/'
+
+############################
 # Abril
 ############################
 # IBA
-alias elco="projects && cd abril/elco"
-alias iba="projects && cd abril/elco/iba"
-alias iba2="projects && cd abril/elco/iba2"
-alias docs_elco="projects && cd abril/elco/iba/docs"
-alias admin_elco="projects && cd abril/elco/iba/admin"
-alias phs="projects && cd abril/elco/iba/phs"
-alias dls="projects && cd abril/elco/iba/dls"
-alias ess="projects && cd abril/elco/iba/ess"
-alias x9="projects && cd abril/elco/iba/x9"
-alias ess_client="projects && cd abril/elco/iba/ess-client"
-alias avs="projects && cd abril/elco/iba/adobe-vendor-support"
-alias dls_client="projects && cd abril/elco/iba/dls-client"
-alias asi_client="projects && cd abril/elco/iba/asiclient"
-alias asisac_client="projects && cd abril/elco/iba/asisacclient"
-alias rest_client_elco="projects && cd abril/elco/iba/rest-client-elco"
-alias heatbeat_elco="projects && cd abril/elco/iba/heartbeat"
-alias mongo_log_elco="projects && cd abril/elco/iba/mongo-log"
-alias log_all_webtraffic_elco="projects && cd abril/elco/iba/log-all-webtraffic"
-alias widget_elco="projects && cd abril/elco/iba/widget"
-
-############################
-# Gonow
-############################
-# Saraiva
-alias media_server_saraiva="www && cd projects/media-server-saraiva"
-
-# Globo
-alias globo_painel_gonow="projects && cd globo/PainelGoNow"
-
-# Akatus
-alias akatus="projects && cd Akatus"
-
-# Colirios
-alias colirios="www && cd projects/colirios"
-
-############################
-# Freelas
-############################
-# XYZLive
-alias xyzlive="www && cd projects/xyzlive"
+alias elco='projects && cd abril/elco'
+alias iba='projects && cd abril/elco/iba'
+alias iba2='projects && cd abril/elco/iba2'
 
 ############################
 # Private
 ############################
-alias finance_system="projects && cd finance_system"
-alias controlandogastos="projects && cd controlandogastos"
-alias bulldogsividal="www && cd projects/bulldogsividal"
-alias middleware_restaurante="www && cd projects/middleware_restaurante"
-
-############################
-# General
-############################
-alias www="cd $WEB_PATH"
-alias projects="cd $HOME/Documents/projects/"
+alias finance_system='projects && cd finance_system'
+alias controlandogastos='projects && cd controlandogastos'
