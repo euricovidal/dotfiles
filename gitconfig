@@ -20,6 +20,7 @@
   df    	= diff
   dfword	= diff --word-diff
   who		= shortlog -s --
+  daily		= log --pretty=format:'- %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative -n 10 --author='Eurico Vidal'
   l		= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative
   commits	= log -p --format='\n\n\n%C(yellow)================================================================================\n%C(yellow)%h %s %C(white)%an%Creset'
 [core]
@@ -33,4 +34,4 @@
 [format]
   pretty	= %C(yellow)%h%Creset %s %C(red)%an%Creset
 [push]
-	default = simple
+  default       = simple
