@@ -5,14 +5,18 @@ alias wifi-sharring='/usr/libexec/InternetSharing'
 alias rvmg='rvm gemset'
 
 # RailRoady
-alias railroady_models='railroady -a -i -o models.dot -M ; dot -Tpng models.dot > models.png; rm models.dot'
-alias railroady_controllers='railroady -C ; neato -Tpng > controllers.png ; neato -Tpng controllers.dot > controllers.png'
+alias railroady_models='railroady -a -i -m -o models.dot -M ; dot -Tpng models.dot > models.png; rm models.dot'
+alias railroady_controllers='railroady -C | neato -Tpng > controllers.png'
+
 
 # PHP
 alias pecl="~/pear/bin/pecl"
 alias pear="~/pear/bin/pear"
 alias phpunit="~/pear/bin/phpunit"
 alias phpdoc="~/pear/bin/phpdoc"
+
+# TMUX
+alias tmux="tmux -2"
 
 # Git
 alias gitrm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
@@ -23,6 +27,15 @@ alias mongo-start='mongod run  --dbpath /usr/local/Cellar/mongodb/ --rest'
 
 # Memcache
 alias memcache-start='/usr/local/bin/memcached -m 1024 -u root -l 127.0.0.1 -p 11211 –u nobody'
+
+# PostGre
+alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+alias pg_stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+#alias postgre.server='sudo -u postgres pg_ctl -D/Library/PostgreSQL/9.2/data'
+
+# Underscore JQ
+alias jq="~/Downloads/jq '.'"
+
 
 # SVN
 alias svnadd="svn st | grep '^?' | awk '{print $2}' | xargs svn add"
