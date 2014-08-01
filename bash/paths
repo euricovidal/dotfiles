@@ -6,8 +6,6 @@ PATH=$PATH:/Applications/oracle/11.2
 
 export PATH
 
-export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/Applications/oracle/11.2
-
 export MANPATH=/usr/local/man:$MANPATH
 
 export ZZDIR=$HOME/Dotfiles/funcoeszz/zz
