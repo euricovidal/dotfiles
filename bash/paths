@@ -4,6 +4,9 @@ PATH=/usr/local/git/bin:$PATH
 PATH=/usr/local/sbin:/usr/local/mysql/bin:$PATH
 PATH=$PATH:/Applications/oracle/11.2
 
+# For Postgres.app
+PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
+
 export PATH
 
 export MANPATH=/usr/local/man:$MANPATH
