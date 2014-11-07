@@ -211,6 +211,15 @@ function all_colours {
   done
 }
 
+function tmux_developer_mode {
+  tmux new-session -s development -d
+  tmux new-window  -t development:2
+  tmux new-window  -t development:3 'git plr; bash --login'
+
+  tmux select-window -t development:3
+  tmux -2 attach-session -t development
+}
+
 function jira_way {
   tmux new-session -s jira_way -d
   #tmux command-prompt -t jira_way:1 'rename-window "IRB DLS"'
