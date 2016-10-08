@@ -1,1 +1,1 @@
---color --format nested --order default
+--color -f p --order rand

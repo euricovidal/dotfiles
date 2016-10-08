@@ -1,5 +1,5 @@
 .DS_Store
-database.yml
+#database.yml
 log/*
 *.sqlite3
 #db/schema.rb
@@ -16,6 +16,5 @@ Vagrantfile
 tags
 sshconfig
 .netrwhist
-tmp
 #.ruby-version
 #.ruby-gemset

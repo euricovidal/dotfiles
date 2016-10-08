@@ -129,14 +129,14 @@ shopt -s dotglob
 shopt -s extglob
 shopt -s progcomp
 shopt -s histappend
-shopt -s autocd
+#shopt -s autocd
 shopt -s cdable_vars
-shopt -s globstar
+#shopt -s globstar
 shopt -s hostcomplete
 set -o ignoreeof
 
-if [ "$OS_NAME" == 'mac' ]; then
-  bind "set mark-symlinked-directories on"  # add trailing slash to symlinked directories
-elif [ "$OS_NAME" == 'linux' ]; then
-  export RUBYOPT=-Ku
-fi
+#if [ "$OS_NAME" == 'mac' ]; then
+  #bind "set mark-symlinked-directories on"  # add trailing slash to symlinked directories
+#elif [ "$OS_NAME" == 'linux' ]; then
+  #export RUBYOPT=-Ku
+#fi

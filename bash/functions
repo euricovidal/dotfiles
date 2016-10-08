@@ -144,15 +144,16 @@ custom_term () {
   PS1+="${WHITE}${ON_BLUE} ${DIR} ${BLUE}⮀"
   without_color+=" ${DIR} ⮀ "
   if [ "$RUBY_VERSION" != "system" ]; then
-    right_side+="${NO_COLOR}${RED} ${TIME}"
-    without_color+="${right_side}xxxxxxxxx"
+    PS1+="${NO_COLOR}${RED} ${TIME}\n"
+    #right_side+="${NO_COLOR}${RED} ${TIME}"
+    #without_color+="${right_side}xxxxxxxxx"
 
-    let fillsize=${COLUMNS}-${#without_color}
-    if [ "$fillsize" -gt "0" ]; then
-      fill="                                                                                                                                                                                                                                                                                                                                                                                                                                 "
-      fill="${fill:0:${fillsize}}"
-    fi
-    PS1+="${fill}${right_side}\n"
+    #let fillsize=${COLUMNS}-${#without_color}
+    #if [ "$fillsize" -gt "0" ]; then
+    #  fill="                                                                                                                                                                                                                                                                                                                                                                                                                                 "
+    #  fill="${fill:0:${fillsize}}"
+    #fi
+    #PS1+="${fill}${right_side}\n"
   fi
   PS1+="${NO_COLOR}${WHITE} ⊗ ${NO_COLOR}"
 }

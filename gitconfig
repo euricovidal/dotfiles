@@ -35,3 +35,9 @@
   pretty	= %C(yellow)%h%Creset %s %C(red)%an%Creset
 [push]
   default       = simple
+[filter "lfs"]
+  clean = git lfs clean %f
+  smudge = git lfs smudge %f
+  required = true
+[gui]
+	recentrepo = /Users/euricovidal/Documents/projects/eopt/one12

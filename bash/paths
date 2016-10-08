@@ -13,3 +13,6 @@ export MANPATH=/usr/local/man:$MANPATH
 
 export ZZDIR=$HOME/Dotfiles/funcoeszz/zz
 export ZZPATH=$HOME/Dotfiles/funcoeszz/funcoeszz
+
+export JBOSS_HOME=/usr/local/opt/wildfly-as/libexec
+export PATH=${PATH}:${JBOSS_HOME}/bin
