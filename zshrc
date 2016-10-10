@@ -54,7 +54,7 @@ plugins=(zsh-autosuggestions git rails)
 
 # User configuration
 
-export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/usr/local/sbin:/sbin:/opt/X11/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/usr/local/sbin:/sbin:/opt/X11/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -126,9 +126,9 @@ alias gitcop="git diff --diff-filter=AM --name-only origin/master | ag '\.rb' | 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # to source syntax highlighting
-source '/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
-source "${ZSH_CUSTOM}/plugins/open-pr/open-pr.plugin.zsh"
-source "${ZSH_CUSTOM}/zaw/zaw.zsh"
+source "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "${ZSH_CUSTOM}/plugins/zsh-open-pr/git-open-pr.plugin.zsh"
+source "${ZSH_CUSTOM}/plugins/zaw/zaw.zsh"
 
 bindkey '^R' zaw-history
 zstyle ':filter-select:highlight' matched fg=6
@@ -144,3 +144,5 @@ ZSH_HIGHLIGHT_PATTERNS+=('rm -rf' 'fg=white,bold,bg=red', 'sudo rm ' 'fg=white,b
 #ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-char)
 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
+
+export HOMEBREW_GITHUB_API_TOKEN="5b183411c6f8e073fe61db142d7fc8d8b58583f5"

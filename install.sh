@@ -98,6 +98,10 @@ if [ "$ZSH" != "n" ]; then
 		log "info" "Install zsh\n"
 		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	fi
+	mkdir -p ${ZSH_CUSTOM}/plugins
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting
+	git clone https://github.com/caarlos0/zsh-open-pr.git ${ZSH_CUSTOM}/plugins/zsh-open-pr
+	git clone git://github.com/zsh-users/zaw.git ${ZSH_CUSTOM}/plugins/zaw
 	log "info" "Seting new configs to zsh\n"
 	ln -sf $HERE/zshrc $HOME/.zshrc
 else
@@ -114,12 +118,12 @@ if [ "$TMUX" != "n" ]; then
 	if [ -e "$(which tmux)" ]; then
 		log "info" "TMUX already installed\n"
 	else
-		if [ "$OSTYPE" =~ ^darwin ]; then
+		#if [ "$OSTYPE" =~ ^darwin ]; then
 			log "info" "Install tmux...\n"
 			brew install tmux &>2
-		else
-			log "error" "Can't auto install tmux\n"
-		fi
+		#else
+	#		log "error" "Can't auto install tmux\n"
+	#	fi
 	fi
 	log "info" "Moving tmux configs to tmp/backup\n"
 	mv -f $HOME/.tmux.conf $BKP_PATH
@@ -131,7 +135,7 @@ log "info" "Moving others configs to tmp/backup\n"
 mv -f $HOME/.ssh/config $HOME/.vim $HOME/.vimrc $HOME/.eslintrc $BKP_PATH
 log "info" "Seting others new configs\n"
 ln -sf $HERE/sshconfig $HOME/.ssh/config
-ln -sf $HERE/dotvim $HOME/.vim
+ln -s $HERE/dotvim $HOME/.vim
 ln -sf $HERE/vimrc $HOME/.vimrc
 ln -sf $HERE/eslintrc $HOME/.eslintrc
 
