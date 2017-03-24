@@ -146,3 +146,13 @@ ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
 
 export HOMEBREW_GITHUB_API_TOKEN="5b183411c6f8e073fe61db142d7fc8d8b58583f5"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f /Users/euricovidal/Downloads/google-cloud-sdk/path.zsh.inc ]; then
+  source '/Users/euricovidal/Downloads/google-cloud-sdk/path.zsh.inc'
+fi
+
+# The next line enables shell command completion for gcloud.
+#if [ -f /Users/euricovidal/Downloads/google-cloud-sdk/completion.zsh.inc ]; then
+  #source '/Users/euricovidal/Downloads/google-cloud-sdk/completion.zsh.inc'
+#fi

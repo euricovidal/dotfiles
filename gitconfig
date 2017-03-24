@@ -27,6 +27,7 @@
   editor	= vim
   excludefile	= /Users/euricovidal/.gitignore
   excludesfile  = /Users/euricovidal/.gitignore
+	autocrlf = false
 [help]
   autocorrect	= 1
 [apply]

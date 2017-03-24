@@ -114,7 +114,8 @@ if [ "$ZSH" != "n" ]; then
 		log "info" "After all steps will be installed zsh\n"
 	fi
 	mkdir -p ~/.oh-my-zsh/custom/plugins
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+	git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
 	git clone https://github.com/caarlos0/zsh-open-pr.git ~/.oh-my-zsh/custom/plugins/zsh-open-pr
 	git clone git://github.com/zsh-users/zaw.git ~/.oh-my-zsh/custom/plugins/zaw
 	log "info" "Seting new configs to zsh\n"
