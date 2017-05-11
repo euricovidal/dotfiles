@@ -115,7 +115,7 @@ if [ "$ZSH" != "n" ]; then
 	fi
 	mkdir -p ~/.oh-my-zsh/custom/plugins
 	git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 	git clone https://github.com/caarlos0/zsh-open-pr.git ~/.oh-my-zsh/custom/plugins/zsh-open-pr
 	git clone git://github.com/zsh-users/zaw.git ~/.oh-my-zsh/custom/plugins/zaw
 	log "info" "Seting new configs to zsh\n"
@@ -131,42 +131,42 @@ else
 fi
 
 if [ "$VIM" != "n" ]; then
-	log "info" "Moving vim configs to tmp/backup\n"
-	mv -f $HOME/.vim $HOME/.vimrc $BKP_PATH
-	if [ -e "$(which vim)" ]; then
-		log "info" "Vim already installed\n"
-	else
-		if [ "$OSX" != "" ]; then
-			log "info" "Install vim...\n"
-			brew install macvim --env-std --with-override-system-vim --with-cscope --with-lua > /dev/null 2>&1
-		else
-			log "error" "Can't auto install vim\n"
-		fi
-	fi
-	log "info" "Seting new configs to vim\n"
-	ln -s -f $HERE/dotvim $HOME/.vim
-	ln -s -f $HERE/vimrc $HOME/.vimrc
+  log "info" "Moving vim configs to tmp/backup\n"
+  mv -f $HOME/.vim $HOME/.vimrc $BKP_PATH
+  if [ -e "$(which vim)" ]; then
+    log "info" "Vim already installed\n"
+  else
+    if [ "$OSX" != "" ]; then
+      log "info" "Install vim...\n"
+      brew install macvim --env-std --with-override-system-vim --with-cscope --with-lua > /dev/null 2>&1
+    else
+      log "error" "Can't auto install vim\n"
+    fi
+  fi
+  log "info" "Seting new configs to vim\n"
+  ln -s -f $HERE/dotvim $HOME/.vim
+  ln -s -f $HERE/vimrc $HOME/.vimrc
 fi
 
 if [ "$TMUX" != "n" ]; then
-	if [ -e "$(which tmux)" ]; then
-		log "info" "TMUX already installed\n"
-	else
-		if [ "$OSX" != "" ]; then
-			log "info" "Install tmux...\n"
-			brew install tmux > /dev/null 2>&1
-		else
-			log "error" "Can't auto install tmux\n"
-		fi
-	fi
-	log "info" "Moving tmux configs to tmp/backup\n"
-	mv -f $HOME/.tmux.conf $BKP_PATH
-	log "info" "Seting new configs to tmux\n"
-	if [ "$TMUX_SIMPLE" != "n" ]; then
-		ln -s -f $HERE/tmux.simple.conf $HOME/.tmux.conf
-	else
-		ln -s -f $HERE/tmux.conf $HOME/.tmux.conf
-	fi
+  if [ -e "$(which tmux)" ]; then
+    log "info" "TMUX already installed\n"
+  else
+    if [ "$OSX" != "" ]; then
+      log "info" "Install tmux...\n"
+      brew install tmux > /dev/null 2>&1
+    else
+      log "error" "Can't auto install tmux\n"
+    fi
+  fi
+  log "info" "Moving tmux configs to tmp/backup\n"
+  mv -f $HOME/.tmux.conf $BKP_PATH
+  log "info" "Seting new configs to tmux\n"
+  if [ "$TMUX_SIMPLE" != "n" ]; then
+    ln -s -f $HERE/tmux.simple.conf $HOME/.tmux.conf
+  else
+    ln -s -f $HERE/tmux.conf $HOME/.tmux.conf
+  fi
 fi
 
 #log "info" "Moving others configs to tmp/backup\n"
@@ -178,12 +178,12 @@ fi
 log "success" "Defined all configs\n"
 
 if [ "$ZSH_VERSION" == "" ]; then
-	log "info" "Installing zsh\n"
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  log "info" "Installing zsh\n"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
 if [ "$ZSH" == "n" ]; then
-	source $HOME/.bash_profile
+  source $HOME/.bash_profile
 fi
 
 log "success" "Finished \o/"
