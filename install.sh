@@ -33,10 +33,10 @@ log "Use github [Y/n]:"
 read GITHUB
 
 if [ "$GITHUB" == "Y" ] || [ "$GITHUB" == "y" ] || [ "$GITHUB" == "" ]; then
-	log "Enter your name:"
-	read NAME
-	log "Enter your email on github:"
-	read GIT_EMAIL
+  log "Enter your name:"
+  read NAME
+  log "Enter your email on github:"
+  read GIT_EMAIL
 fi
 
 log "Use ruby [Y/n]:"
@@ -52,13 +52,13 @@ log "Use tmux [Y/n]: "
 read TMUX
 
 if [ "$TMUX" != "n" ]; then
-	log "Simple tmux config (if no, will be set the pretty config) [Y/n]: "
-	read TMUX_SIMPLE
+  log "Simple tmux config (if no, will be set the pretty config) [Y/n]: "
+  read TMUX_SIMPLE
 fi
 
 if [ "$GIT_EMAIL" == "" ] && [ "$RUBY" == "n" ] && [ "$ZSH" == "n" ] && [ "$TMUX" == "n" ] && [ "$VIM" == "n" ]; then
-	log "error" "Do nothing, bye..."
-	exit
+  log "error" "Do nothing, bye..."
+  exit
 fi
 
 echo "\n"
@@ -70,11 +70,11 @@ echo "\n"
 [ "$ZSH" != "n" ] && log "info" "\t- Install ZSH and set configs\n"
 [ "$VIM" != "n" ] && log "info" "\t- Install Vim and set configs\n"
 if [ "$TMUX" != "n" ]; then
-	if [ "$TMUX_SIMPLE" != "n" ]; then
-		log "info" "\t- Install TMUX and set simple configs\n"
-	else
-		log "info" "\t- Install TMUX and set pretty configs\n"
-	fi
+  if [ "$TMUX_SIMPLE" != "n" ]; then
+    log "info" "\t- Install TMUX and set simple configs\n"
+  else
+    log "info" "\t- Install TMUX and set pretty configs\n"
+  fi
 fi
 
 echo "\n"
@@ -88,46 +88,48 @@ rm -rf $BKP_PATH
 mkdir -p $BKP_PATH
 
 if [ "$GIT_EMAIL" != "" ]; then
-	sed -i '' "s/GIT_NAME/$NAME/" $HERE/gitconfig
-	sed -i '' "s/GIT_EMAIL/$GIT_EMAIL/" $HERE/gitconfig
-	log "info" "Moving git configs to tmp/backup\n"
-	mv -f $HOME/.gitconfig $HOME/.gitignore $BKP_PATH
-	log "info" "Seting new configs to git\n"
-	ln -s -f $HERE/gitconfig $HOME/.gitconfig
-	ln -s -f $HERE/gitignore $HOME/.gitignore
+  sed -i '' "s/GIT_NAME/$NAME/" $HERE/gitconfig
+  sed -i '' "s/GIT_EMAIL/$GIT_EMAIL/" $HERE/gitconfig
+  log "info" "Moving git configs to tmp/backup\n"
+  mv -f $HOME/.gitconfig $HOME/.gitignore $BKP_PATH
+  log "info" "Seting new configs to git\n"
+  ln -s -f $HERE/gitconfig $HOME/.gitconfig
+  ln -s -f $HERE/gitignore $HOME/.gitignore
 fi
 
 if [ "$RUBY" != "n" ]; then
-	log "info" "Moving ruby configs to tmp/backup\n"
-	mv -f $HOME/.irbrc $HOME/.gemrc $HOME/.rspec  $BKP_PATH
-	log "info" "Seting new configs to ruby\n"
-	ln -s -f $HERE/inputrc $HOME/.inputrc
-	ln -s -f $HERE/gemrc $HOME/.gemrc
-	ln -s -f $HERE/rspec $HOME/.rspec
-	ln -s -f $HERE/irbrc $HOME/.irbrc
+  log "info" "Moving ruby configs to tmp/backup\n"
+  mv -f $HOME/.irbrc $HOME/.gemrc $HOME/.rspec  $BKP_PATH
+  log "info" "Seting new configs to ruby\n"
+  ln -s -f $HERE/inputrc $HOME/.inputrc
+  ln -s -f $HERE/gemrc $HOME/.gemrc
+  ln -s -f $HERE/rspec $HOME/.rspec
+  ln -s -f $HERE/irbrc $HOME/.irbrc
 fi
 
 if [ "$ZSH" != "n" ]; then
-	log "info" "Moving zsh configs to tmp/backup\n"
-	mv -f $HOME/.zshrc $BKP_PATH
-	if [ "$ZSH_VERSION" == "" ]; then
-		log "info" "After all steps will be installed zsh\n"
-	fi
-	mkdir -p ~/.oh-my-zsh/custom/plugins
-	git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-	git clone https://github.com/caarlos0/zsh-open-pr.git ~/.oh-my-zsh/custom/plugins/zsh-open-pr
-	git clone git://github.com/zsh-users/zaw.git ~/.oh-my-zsh/custom/plugins/zaw
-	log "info" "Seting new configs to zsh\n"
-	ln -s -f $HERE/zshrc $HOME/.zshrc
+  log "info" "Moving zsh configs to tmp/backup\n"
+  mv -f $HOME/.zshrc $BKP_PATH
+  if [ "$ZSH_VERSION" == "" ]; then
+    log "info" "After all steps will be installed zsh\n"
+  fi
+  mkdir -p ~/.oh-my-zsh/custom/plugins
+  git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+  git clone https://github.com/caarlos0/zsh-open-pr.git ~/.oh-my-zsh/custom/plugins/zsh-open-pr
+  git clone git://github.com/zsh-users/zaw.git ~/.oh-my-zsh/custom/plugins/zaw
+  log "info" "Seting new configs to zsh\n"
+  ln -s -f $HERE/zshrc $HOME/.zshrc
+  # TODO add sed to replace de default hostname on zshrc
+  ln -s -f $HERE/wedisagree_h.zsh-theme ~/.oh-my-zsh/themes/wedisagree_h.zsh-theme
 else
-	log "info" "Moving bash configs to tmp/backup\n"
-	mv -f $HOME/.bash $HOME/.bash_history $BKP_PATH
-	log "info" "Seting new configs to bash\n"
-	ln -s -f $HERE/bash_profile $HOME/.bash_profile
-	ln -s -f $HERE/bash_profile $HOME/.bashrc
-	ln -s -f $HERE/bash $HOME/.bash
-	ln -s -f $HERE/bash_completion /etc/bash_completion
+  log "info" "Moving bash configs to tmp/backup\n"
+  mv -f $HOME/.bash $HOME/.bash_history $BKP_PATH
+  log "info" "Seting new configs to bash\n"
+  ln -s -f $HERE/bash_profile $HOME/.bash_profile
+  ln -s -f $HERE/bash_profile $HOME/.bashrc
+  ln -s -f $HERE/bash $HOME/.bash
+  ln -s -f $HERE/bash_completion /etc/bash_completion
 fi
 
 if [ "$VIM" != "n" ]; then

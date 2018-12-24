@@ -5,8 +5,11 @@ export ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="robbyrussell" #default
-ZSH_THEME="wedisagree" # simple
+#ZSH_THEME="wedisagree" # simple
+ZSH_THEME="wedisagree_h" # simple with hostname
 #ZSH_THEME="miloshadzic" # simpliest
+
+DEFAULT_HOSTNAME='Euricos-MacBook-Pro.local'
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

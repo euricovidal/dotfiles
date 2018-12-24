@@ -1,49 +1,51 @@
 [user]
-  name		= Eurico Vidal
-  email		= euricovidal@gmail.com
+  name  = Eurico Vidal
+  email = euricovidal@gmail.com
 [color]
-  diff		= auto
-  status	= auto
-  branch	= auto
-  ui		= true
+  diff   = auto
+  status = auto
+  branch = auto
+  ui     = true
 [alias]
-  b		= branch
-  br            = branch -av
-  pl            = pull
-  plr           = pull --rebase
-  ps            = push
-  cm		= commit -am
-  ch		= checkout
-  #cof		= checkout --force
-  s		= stash
-  st		= status -s
-  df    	= diff
-  dfword	= diff --word-diff
-  who		= shortlog -s --
-  daily		= log --pretty=format:'- %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative -n 10 --author='Eurico Vidal'
-  l		= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative
-  commits	= log -p --format='\n\n\n%C(yellow)================================================================================\n%C(yellow)%h %s %C(white)%an%Creset'
+  b       = branch
+  br      = branch -av
+  pl      = pull
+  plr     = pull --rebase
+  ps      = push
+  cm      = commit -am
+  ch      = checkout
+  #cof    = checkout --force
+  s       = stash
+  st      = status -s
+  df      = diff
+  dfword  = diff --word-diff
+  who     = shortlog -s --
+  daily   = log --pretty=format:'- %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative -n 10 --author='Eurico Vidal'
+  l       = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative
+  commits = log -p --format='\n\n\n%C(yellow)================================================================================\n%C(yellow)%h %s %C(white)%an%Creset'
 [core]
-  editor	= vim
-  excludefile	= /Users/euricovidal/.gitignore
-  excludesfile  = /Users/euricovidal/.gitignore
-	autocrlf = false
+  editor       = vim
+  excludefile  = /Users/euricovidal/.gitignore
+  excludesfile = /Users/euricovidal/.gitignore
+  autocrlf     = false
 [help]
-  autocorrect	= 1
+  autocorrect = 1
 [apply]
-  whitespace	= nowarn
+  whitespace = nowarn
 [format]
-  pretty	= %C(yellow)%h%Creset %s %C(red)%an%Creset
+  pretty = %C(yellow)%h%Creset %s %C(red)%an%Creset
 [push]
-  default       = simple
+  default = simple
 [filter "lfs"]
-  clean = git lfs clean %f
-  smudge = git lfs smudge %f
+  clean    = git lfs clean %f
+  smudge   = git lfs smudge %f
   required = true
 [gui]
   recentrepo = /Users/euricovidal/Documents/projects/eopt/one12
 [merge]
-  tool = vimdiff
+  tool          = vimdiff
   conflictstyle = diff3
 [mergetool]
-  prompt = false
+  ;prompt = false
+[diff]
+  tool = vimdiff
