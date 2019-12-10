@@ -26,6 +26,9 @@ if [ "$DEFAULT_HOSTNAME" != "$(hostname)" ]; then
   MY_HOSTNAME="@%M "
 fi
 
+# eb_env=$(eb status | head -2 | tail -n 1 | grep -oE "[_a-z-]+$")
+# EB_ENV='%{$fg[yellow]%}$(eb_env)%{$reset_color%}'
+
 PROMPT='%{$fg[green]%}$MY_HOSTNAME%{$fg[magenta]%}[%c] %{$reset_color%}'
 
 # The right-hand prompt

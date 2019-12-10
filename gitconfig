@@ -5,7 +5,7 @@
   diff   = auto
   status = auto
   branch = auto
-  ui     = true
+	ui = true
 [alias]
   b       = branch
   br      = branch -av
@@ -28,12 +28,13 @@
   excludefile  = /Users/euricovidal/.gitignore
   excludesfile = /Users/euricovidal/.gitignore
   autocrlf     = false
+  fileMode     = false
 [help]
   autocorrect = 1
 [apply]
   whitespace = nowarn
 [format]
-  pretty = %C(yellow)%h%Creset %s %C(red)%an%Creset
+  pretty = oneline
 [push]
   default = simple
 [filter "lfs"]
@@ -46,6 +47,8 @@
   tool          = vimdiff
   conflictstyle = diff3
 [mergetool]
-  ;prompt = false
+  prompt = false
 [diff]
   tool = vimdiff
+[credential]
+  helper = cache --timeout=500000000

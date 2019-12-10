@@ -125,8 +125,13 @@ alias gitcop="git diff --diff-filter=AM --name-only origin/master | ag '\.rb' | 
 
 #alias phploy='php /Library/WebServer/Documents/projects/phploy.phar'
 
+alias dc="docker-compose"
+
 # RVM
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# PIP
+export PATH="$PATH:$HOME/.local/bin"
 
 # to source syntax highlighting
 source "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
@@ -165,3 +170,13 @@ if [ -f '/Users/euricovidal/Downloads/google-cloud-sdk/path.zsh.inc' ]; then sou
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/euricovidal/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/euricovidal/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+export TZ=America/Sao_Paulo
+
+
+if [ -z "$TMUX" ]; then
+  cd projects/eopt/kikker
+  tmux attach -t default || tmux new -s default
+fi
+
+export LD_LIBRARY_PATH=/usr/local/instantclient/
+export ORACLE_HOME=/usr/local/instanceclient/

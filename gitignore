@@ -1,6 +1,8 @@
 .DS_Store
 #database.yml
 log/*
+__pycache__/
+*.py[cod]
 *.sqlite3
 #db/schema.rb
 pkg
@@ -13,7 +15,7 @@ coverage
 .settings
 .vagrant
 Vagrantfile
-tags
+tags/
 sshconfig
 .netrwhist
 #.ruby-version
