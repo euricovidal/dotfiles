@@ -9,7 +9,8 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="wedisagree_h" # simple with hostname
 #ZSH_THEME="miloshadzic" # simpliest
 
-DEFAULT_HOSTNAME='Euricos-MacBook-Pro.local'
+# DEFAULT_HOSTNAME='Euricos-MacBook-Pro.local'
+DEFAULT_HOSTNAME='noteeurico'
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -53,7 +54,7 @@ DEFAULT_HOSTNAME='Euricos-MacBook-Pro.local'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions git rails)
+plugins=(zsh-autosuggestions git docker docker-compose)
 
 # User configuration
 
@@ -127,6 +128,10 @@ alias gitcop="git diff --diff-filter=AM --name-only origin/master | ag '\.rb' | 
 
 alias dc="docker-compose"
 
+# Copy / Paste
+alias copy="cat | xclip -selection clipboard"
+alias paste="xclip -selection clipboard -o"
+
 # RVM
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
@@ -180,3 +185,9 @@ fi
 
 export LD_LIBRARY_PATH=/usr/local/instantclient/
 export ORACLE_HOME=/usr/local/instanceclient/
+
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
