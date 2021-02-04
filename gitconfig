@@ -52,3 +52,6 @@
   tool = vimdiff
 [credential]
   helper = cache --timeout=500000000
+
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/

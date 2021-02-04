@@ -167,6 +167,7 @@ if [ "$TMUX" != "n" ]; then
   if [ "$TMUX_SIMPLE" != "n" ]; then
     ln -s -f $HERE/tmux.simple.conf $HOME/.tmux.conf
   else
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     ln -s -f $HERE/tmux.conf $HOME/.tmux.conf
   fi
 fi
